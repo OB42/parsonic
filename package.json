@@ -1,6 +1,6 @@
 {
   "name": "parsonic",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "description": "Ultra fast HTML5 parser, using native chromium functions and Nightmarejs.",
   "main": "parsonic.js",
   "dependencies":{
