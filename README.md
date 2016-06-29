@@ -23,7 +23,6 @@ require("request")("https://github.com", function(err, res, html){
             console.log(results)
         }
     })
-
 })
 ```
 
