@@ -6,6 +6,12 @@ const events = require("events")
 class BrowserEmitter extends events {}
 const browserEmitter = new BrowserEmitter()
 var load
+var toExecuteOnLoad = []
+browserEmitter.on("load", () => {
+    toExecuteOnLoad.filter(function(f){
+        f()
+    })    
+})
 nightmare.goto('about:blank')
 .then(() => {
     load = function(html, args, browserCallback, nodeFunction){
@@ -31,9 +37,7 @@ exports.load = function(html, args, browserCallback, nodeFunction){
         load(html, args, browserCallback, nodeFunction)
     }
     else{
-        browserEmitter.on("load", () => {
-            load(html, args, browserCallback, nodeFunction)
-        })
+        toExecuteOnLoad.push(function(){load(html, args, browserCallback, nodeFunction)})
     }
 }
 exports.close = function(){
