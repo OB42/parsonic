@@ -23,7 +23,7 @@ nightmare.goto('about:blank')
                 results = eval("(" + browserCallbackSource + ")(document, args)")
             }
             catch(err){
-                results = {error: "Error from the browser: " + err.toString()}
+                results = {error: "Error from the browser: " + err.stack}
             }
             return results
         }, html, args, toSource(browserCallback))
