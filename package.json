@@ -4,8 +4,7 @@
   "description": "Ultra fast HTML5 parser, using native chromium functions and Nightmarejs.",
   "main": "parsonic.js",
   "dependencies":{
-      "nightmare": "2.5.2",
-      "tosource": "1.0.0"
+      "nightmare": "2.5.2"
   },
   "repository": {
     "type": "git",
