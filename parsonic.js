@@ -1,7 +1,6 @@
 "use strict";
 const Nightmare = require("nightmare"),
 nightmare = Nightmare({ show: false, width: 0, height: 0 })
-const toSource = require("tosource")
 const events = require("events")
 class BrowserEmitter extends events {}
 const browserEmitter = new BrowserEmitter()
@@ -26,7 +25,7 @@ nightmare.goto('about:blank')
                 results = {error: "Error from the browser: " + err.stack}
             }
             return results
-        }, html, args, toSource(browserCallback))
+        }, html, args, browserCallback.toString())
         .then(nodeFunction)
     }
     browserEmitter.emit("load")
