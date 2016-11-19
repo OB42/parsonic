@@ -5,7 +5,7 @@ Here is an example:
 ```js
 var parsonic = require("parsonic");
 var request = require("request");
-("https://github.com", (err, res, html) => {
+request("https://github.com", (err, res, html) => {
 	parsonic.load(html, {selector:"*", anyData:"Hello world!"}, function(document, args){
 		/*We're out of Node.js scope, we can only use data from "args" and document,
 		however this is not headless scraping: <script> are not executed and window isn't accessible.
