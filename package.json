@@ -1,10 +1,10 @@
 {
   "name": "parsonic",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Ultra fast HTML5 parser, using native chromium functions and Nightmarejs.",
   "main": "parsonic.js",
   "dependencies":{
-      "nightmare": "2.5.2"
+      "nightmare": "2.8.1"
   },
   "repository": {
     "type": "git",
