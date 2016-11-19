@@ -1,6 +1,8 @@
 # parsonic
 Parsonic is a node.js wrapper for the native Chromium Html DOMParser,
+
 once it's loaded, parsonic can parse a page ~3x times faster than Cheerio.
+
 Here is an example:
 ```js
 var parsonic = require("parsonic");
