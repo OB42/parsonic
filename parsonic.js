@@ -12,42 +12,43 @@ const browser_emitter = new Browser_Emitter();
 var load;
 var onload = [];
 browser_emitter.on("load", () => {
-    onload.filter((f) => {f();});
+	onload.filter((f) => {f();});
 });
-nightmare.goto('about:blank')
+nightmare
+.goto('about:blank')
 .then(() => {
-    load = (html, args, browser_callback, node_callback) => {
-        nightmare.evaluate((html, args, browser_callback_source) => {
+	load = (html, args, browser_callback, node_callback) => {
+		nightmare.evaluate((html, args, browser_callback_source) => {
 			var result;
-            var window = null;
+			var window = null;
 			try
 			{
-            	var document = new DOMParser().parseFromString(html, "text/html");
-                result = eval("(" + browser_callback_source + ")(document, args)");
-            }
-            catch (err)
+				var document = new DOMParser().parseFromString(html, "text/html");
+				result = eval("(" + browser_callback_source + ")(document, args)");
+			}
+			catch (err)
 			{
-                result = {error: "Error from the browser: " + err.stack};
-            }
-            return (result);
-        }, html, args, browser_callback.toString())
-        .then((result) => {
+				result = {error: "Error from the browser: " + err.stack};
+			}
+			return (result);
+		}, html, args, browser_callback.toString())
+		.then((result) => {
 			node_callback(result.error || null, result.error ? null : result);
 		})
-        .catch((error) => node_callback(error));
-    };
-    browser_emitter.emit("load");
+		.catch((error) => node_callback(error));
+	};
+	browser_emitter.emit("load");
 });
 exports.load = (html, args, browser_callback, node_callback) => {
-    if (typeof load === "function")
+	if (typeof load === "function")
 	{
-        load(html, args, browser_callback, node_callback);
-    }
-    else
+		load(html, args, browser_callback, node_callback);
+	}
+	else
 	{
-        onload.push(() => load(html, args, browser_callback, node_callback));
-    }
+		onload.push(() => load(html, args, browser_callback, node_callback));
+	}
 };
 exports.close = () => {
-    nightmare.proc.kill('SIGINT');
+	nightmare.proc.kill('SIGINT');
 };
