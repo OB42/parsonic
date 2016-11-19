@@ -12,7 +12,7 @@ const browser_emitter = new Browser_Emitter();
 var load;
 var onload = [];
 browser_emitter.on("load", () => {
-	onload.filter((f) => {f();});
+	onload.forEach((f) => f());
 });
 nightmare
 .goto('about:blank')
