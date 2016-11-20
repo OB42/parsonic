@@ -35,7 +35,7 @@ nightmare
 		.then((result) => {
 			node_callback(result.error || null, result.error ? null : result);
 		})
-		.catch((error) => node_callback(error));
+		.catch(node_callback);
 	};
 	browser_emitter.emit("load");
 });
